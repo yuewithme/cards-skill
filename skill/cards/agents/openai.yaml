@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cards"
+  short_description: "Create method intro and industry application cards"
+  default_prompt: "Create a card for this method or method × industry analysis:"
