@@ -1,6 +1,10 @@
 node_modules/
 work/
 outputs/
+examples/*
+!examples/
+!examples/商业模式画布分析图.png
+!examples/无人车行业微笑曲线分析图.png
 *.log
 .DS_Store
 Thumbs.db
