@@ -38,9 +38,9 @@ html, body { width: 1280px; }
 .page { width: 1280px; min-height: 1800px; }
 ```
 
-For dense analyses, allow `min-height: 2100px` to `2600px`. Do not squeeze a full industry analysis into a compact 1080px teaching-card composition.
+For dense analyses, allow `min-height: 2100px` to `2600px`. Do not squeeze a full industry analysis into a compact teaching-card composition.
 
-Use 1080px only when the user explicitly wants a compact social card or the analysis is intentionally light.
+Use a compact social-card format only when the user explicitly asks for it.
 
 ## Content Model
 
@@ -89,7 +89,7 @@ Use this six-layer structure as the default:
 
 ## Previous Compact Structure
 
-Use the older five-layer compact structure only for lighter requests:
+Use a shorter five-layer structure only when the user explicitly asks for a compact output:
 
 1. Title Layer.
 2. Mapping Layer.
@@ -204,4 +204,4 @@ Before rendering, verify:
 - The insights include implications, not only observations.
 - The opportunity/risk/action sections are distinguishable.
 - The final thesis names a direction of action.
-- Text remains readable at 1080px export width.
+- Text remains readable at 1280px export width.

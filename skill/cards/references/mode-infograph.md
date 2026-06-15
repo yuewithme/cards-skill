@@ -144,7 +144,7 @@ Read `assets/infograph_template.html`
 - 不规则分割（clip-path 斜切）
 - 网格（密密度的实验室感）
 
-**文字大小** — 为手机端阅读优化（1080px 画布在手机上缩放约 2.8 倍）：
+**文字大小** — 为手机端阅读优化（1280px 大画布在手机上缩放后仍需可读）：
 - 最大元素和最小元素的比例 ≥ 10:1
 - 可以用到 400px 的字（它不再是"文字"，是"地形"）
 - 最小可读标注不低于 24px（手机上约 8.7px）
@@ -252,7 +252,7 @@ Read `assets/infograph_template.html`
 | 所有文字都在 30-44px | 你没有制造张力。需要 ≥ 10:1 比例。 |
 | 正文字号小于 36px | 手机上会不可读。最小正文 36px，最小标注 24px。 |
 | 区块之间间距都一样 | 有意识地做疏密交替。 |
-| 用 `max-width` 压短了本该一行放下的文字 | 画布 1080px。一句话能放一行就放一行。只在正文段落用 `max-width` 控制行宽（≤ 56ch），标题和金句**不要限宽**——让它自然呼吸到该停的地方。 |
+| 用 `max-width` 压短了本该一行放下的文字 | 画布 1280px。一句话能放一行就放一行。只在正文段落用 `max-width` 控制行宽（≤ 64ch），标题和金句**不要限宽**——让它自然呼吸到该停的地方。 |
 
 ## 步骤 4：写 CSS + HTML
 
@@ -286,5 +286,5 @@ Read `assets/infograph_template.html`
 ## 步骤 6：截图
 
 ```bash
-node assets/capture.js /tmp/ljg_cast_infograph_{name}.html ~/Downloads/{name}.png 1080 800 fullpage
+node assets/capture.js /tmp/ljg_cast_infograph_{name}.html ~/Downloads/{name}.png 1280 900 fullpage
 ```

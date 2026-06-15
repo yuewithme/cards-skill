@@ -30,20 +30,10 @@ Create:
 Default render command:
 
 ```bash
-node assets/capture.js <html> <png> 1080 800 fullpage
-```
-
-For **Industry Application** cards, prefer a larger report canvas:
-
-```bash
 node assets/capture.js <html> <png> 1280 900 fullpage
 ```
 
-For dense **Method Intro** cards whose main structure is a large canvas, table, matrix, map, or multi-cell framework, also prefer the 1280-wide render so the framework can breathe:
-
-```bash
-node assets/capture.js <html> <png> 1280 900 fullpage
-```
+Use this large-card logic for all outputs by default. Preserve enough canvas space for method introductions, framework diagrams, and industry applications. Use a compact format only when the user explicitly requests it.
 
 Run the command from the skill root. The script depends on local Playwright in this skill folder.
 
@@ -117,9 +107,9 @@ Key constraints:
 - Avoid centered hero layouts unless the content is a single sparse idea.
 - Avoid fake data and AI-flavored copy.
 - Use at most one strong accent color.
-- Keep text readable at 1080px export width.
-- For large matrix/canvas methods, use a wider fixed canvas instead of compressing the structure into narrow cards.
-- For industry application cards, use a larger fixed report format and prioritize analytical capacity over compactness.
+- Keep text readable at 1280px export width.
+- Use a larger fixed canvas by default and prioritize analytical capacity over compactness.
+- Use a compact format only when the user explicitly asks for it.
 
 ## Delivery
 

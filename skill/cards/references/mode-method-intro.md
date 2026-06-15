@@ -79,7 +79,7 @@ Include these sections unless the content clearly calls for a different structur
 - Use the selected content geometry; do not force every method into cards.
 - Preserve the real geometry of canvas tools. For Business Model Canvas and similar frameworks, make the central canvas wide enough that each cell has room for a label, question, and interpretation.
 - Do not let decorative marks cover explanatory text.
-- Keep body text readable after export at 1080px width.
+- Keep body text readable after export at 1280px width.
 - Do not add footer, logo, author signature, or default source line.
 
 ## Quality Check
