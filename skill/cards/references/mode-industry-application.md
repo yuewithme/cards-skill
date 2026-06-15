@@ -12,7 +12,7 @@ Examples:
 
 ## Goal
 
-Create a consulting-style application card that answers:
+Create a consulting-style application report card that answers:
 
 1. What does the method reveal in this specific domain?
 2. Which signals matter most?
@@ -20,6 +20,27 @@ Create a consulting-style application card that answers:
 4. What actions should the reader consider?
 
 This is not a generic method introduction. It must say something specific about the selected domain.
+
+## Canvas Contract
+
+Industry application cards need more room than method intro cards. Use a large fixed report canvas by default.
+
+Recommended export:
+
+```bash
+node assets/capture.js <html> <png> 1280 900 fullpage
+```
+
+Recommended CSS:
+
+```css
+html, body { width: 1280px; }
+.page { width: 1280px; min-height: 1800px; }
+```
+
+For dense analyses, allow `min-height: 2100px` to `2600px`. Do not squeeze a full industry analysis into a compact 1080px teaching-card composition.
+
+Use 1080px only when the user explicitly wants a compact social card or the analysis is intentionally light.
 
 ## Content Model
 
@@ -36,30 +57,100 @@ Extract or infer:
 
 If domain details are missing, make reasonable assumptions and state them visually only when useful. Do not invent fake statistics.
 
-## Recommended Structure
+## Fixed Report Structure
 
-Use this five-layer structure as the default:
+Use this six-layer structure as the default:
 
 1. **Title Layer**
    - Format: `{Method} × {Domain}` or `{Domain} {Method} 分析`.
    - Add a subtitle stating what the analysis is trying to judge.
 
-2. **Mapping Layer**
-   - Put the method's parts on the left or center.
-   - Map each part to domain-specific signals.
-   - This is the main visual anchor.
+2. **Framework Diagram Layer**
+   - A large visual anchor occupying the full width or a dominant upper band.
+   - Examples: five-forces pressure map, SWOT matrix, smile curve, STEEP field map.
+   - Keep this diagram clear and spacious. It should orient the reader before details begin.
 
-3. **Insight Layer**
-   - Convert the mapping into implications.
-   - Use "这意味着..." thinking, not list-only summaries.
+3. **Pressure / Signal Cards**
+   - 4-6 compact cards below or beside the framework diagram.
+   - Each card includes: factor name, intensity/priority tag if useful, and 2-4 lines of domain-specific analysis.
 
-4. **Opportunity / Risk Layer**
+4. **Detailed Analysis Table**
+   - A wide table or structured grid for the real analysis payload.
+   - Typical columns: dimension, domain signal, implication, strategy/action.
+   - This is the main reason to use the larger canvas.
+
+5. **Opportunity / Risk / Action Layer**
    - Split into opportunity windows and risk constraints.
    - Alternative: use "可下注 / 要回避 / 先验证".
 
-5. **Action Thesis**
+6. **Action Thesis**
    - One strong concluding sentence.
    - It should answer: "So what should we do next?"
+
+## Previous Compact Structure
+
+Use the older five-layer compact structure only for lighter requests:
+
+1. Title Layer.
+2. Mapping Layer.
+3. Insight Layer.
+4. Opportunity / Risk Layer.
+5. Action Thesis.
+
+## Analysis Depth
+
+For normal industry application requests, include enough substance to justify the larger format:
+
+- At least 5 framework mapping items when the method supports them.
+- At least 4 pressure/signal cards.
+- At least 4 detailed rows in the analysis table.
+- At least 2 opportunity windows.
+- At least 2 risk constraints.
+- One action thesis.
+
+Do not create a large blank poster. If the content is thin, add analysis by reasoning from the method and domain.
+
+## Layout Blueprint
+
+Default report layout:
+
+```text
+┌──────────────────────────────────────────────┐
+│ Title: Method × Industry                     │
+│ Subtitle / scope / object                    │
+├──────────────────────────────────────────────┤
+│ Large framework diagram                      │
+│ e.g. curve / pressure map / matrix           │
+├──────┬──────┬──────┬──────┬──────┬──────────┤
+│ Signal cards / pressure cards                │
+├──────────────────────────────────────────────┤
+│ Detailed analysis table                      │
+│ dimension | domain signal | implication | action │
+├────────────────────┬─────────────────────────┤
+│ Opportunity windows │ Risk constraints       │
+├──────────────────────────────────────────────┤
+│ Action thesis / strategic direction          │
+└──────────────────────────────────────────────┘
+```
+
+Use asymmetry inside sections, but keep the overall report order stable.
+
+## Original Layer Meanings
+
+When implementing the fixed report structure:
+
+- **Mapping Layer** becomes the framework diagram plus signal cards.
+- **Insight Layer** becomes the detailed table and implications.
+- **Opportunity / Risk Layer** remains explicit.
+- **Action Thesis** remains the final landing statement.
+
+## Insight Layer Guidance
+
+For the detailed analysis table:
+
+   - Convert the mapping into implications.
+   - Use "这意味着..." thinking, not list-only summaries.
+   - Every row should move from observation to consequence to action.
 
 ## Layout Patterns
 

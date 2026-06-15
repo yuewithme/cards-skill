@@ -33,6 +33,12 @@ Default render command:
 node assets/capture.js <html> <png> 1080 800 fullpage
 ```
 
+For **Industry Application** cards, prefer a larger report canvas:
+
+```bash
+node assets/capture.js <html> <png> 1280 900 fullpage
+```
+
 Run the command from the skill root. The script depends on local Playwright in this skill folder.
 
 ## Required Reads
@@ -106,7 +112,7 @@ Key constraints:
 - Avoid fake data and AI-flavored copy.
 - Use at most one strong accent color.
 - Keep text readable at 1080px export width.
-- For industry application cards, prioritize analytical clarity over decorative framework purity.
+- For industry application cards, use a larger fixed report format and prioritize analytical capacity over compactness.
 
 ## Delivery
 
