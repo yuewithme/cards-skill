@@ -36,6 +36,7 @@ Choose by method shape:
 | Five forces / five dimensions | Radial map or asymmetric factor grid |
 | Process / sequence | Timeline or vertical pipeline |
 | Value chain / curve | Large curve or chain diagram |
+| Nine-cell canvas or large matrix | Wide 1280px canvas with the original framework geometry preserved |
 | Checklist-like model | Grouped field manual layout |
 | Abstract concept | Giant word or symbol + supporting blocks |
 
@@ -76,6 +77,7 @@ Include these sections unless the content clearly calls for a different structur
 
 - Create one dominant visual anchor.
 - Use the selected content geometry; do not force every method into cards.
+- Preserve the real geometry of canvas tools. For Business Model Canvas and similar frameworks, make the central canvas wide enough that each cell has room for a label, question, and interpretation.
 - Do not let decorative marks cover explanatory text.
 - Keep body text readable after export at 1080px width.
 - Do not add footer, logo, author signature, or default source line.

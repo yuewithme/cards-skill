@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #F4F3F0;
+    --green: #75856F;
+    --pink: #B23A48;
+    --yellow: #F2E8C6;
+    --ink: #2D2926;
+    --ink-light: #5C5350;
+    --white: #FFFFFF;
+    --serif: 'DM Serif Display', 'KingHwa_OldSong', Georgia, 'Noto Serif SC', serif;
+    --sans: 'DM Sans', 'KingHwa_OldSong', -apple-system, 'PingFang SC', system-ui, sans-serif;
+    --mono: 'SF Mono', 'Menlo', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1280px; background: var(--bg); }
+
+  .page {
+    width: 1280px;
+    min-height: 1840px;
+    background:
+      radial-gradient(circle at 92% 8%, rgba(117,133,111,0.12), transparent 320px),
+      linear-gradient(180deg, #fbfaf7 0%, var(--bg) 52%, #eeebe4 100%);
+    position: relative;
+    color: var(--ink);
+    font-family: var(--sans);
+    padding: 70px 72px 62px;
+  }
+
+  .page > .grain {
+    position: absolute;
+    inset: 0;
+    filter: url(#noise);
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .bm-ref {
+    font-family: var(--mono);
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    color: var(--pink);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .bm-hero {
+    display: grid;
+    grid-template-columns: 1fr 330px;
+    gap: 44px;
+    align-items: end;
+    padding-bottom: 34px;
+    border-bottom: 5px solid var(--pink);
+  }
+
+  .bm-title {
+    font-size: 66px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    font-weight: 800;
+    margin-top: 12px;
+  }
+
+  .bm-subtitle {
+    max-width: 820px;
+    margin-top: 18px;
+    font-size: 25px;
+    line-height: 1.55;
+    color: var(--ink-light);
+    font-weight: 600;
+  }
+
+  .bm-badge {
+    border: 2px solid var(--pink);
+    border-radius: 8px;
+    padding: 22px 24px;
+    text-align: center;
+    background: rgba(255,255,255,0.58);
+  }
+
+  .bm-badge strong {
+    display: block;
+    font-size: 32px;
+    color: var(--pink);
+    line-height: 1.15;
+  }
+
+  .bm-badge span {
+    display: block;
+    margin-top: 12px;
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--ink-light);
+    font-weight: 700;
+  }
+
+  .bm-principle {
+    margin-top: 34px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 18px;
+  }
+
+  .bm-principle-main {
+    background: #121a18;
+    color: #f5f0e8;
+    padding: 30px 34px;
+    border-radius: 8px;
+    box-shadow: 0 18px 34px rgba(58,48,42,0.13);
+  }
+
+  .bm-principle-side {
+    background: rgba(255,255,255,0.7);
+    border-left: 6px solid var(--green);
+    padding: 30px 34px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .eyebrow {
+    font-size: 18px;
+    font-family: var(--mono);
+    letter-spacing: 0.08em;
+    color: var(--pink);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .bm-principle h2,
+  .bm-section-title {
+    font-size: 31px;
+    line-height: 1.22;
+    margin-top: 10px;
+    font-weight: 800;
+  }
+
+  .bm-principle p {
+    margin-top: 12px;
+    font-size: 22px;
+    line-height: 1.58;
+    font-weight: 600;
+  }
+
+  .bm-principle-side p {
+    color: var(--ink-light);
+  }
+
+  .canvas-wrap {
+    margin-top: 34px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(58,48,42,0.12);
+    border-radius: 10px;
+    padding: 28px;
+    box-shadow: 0 22px 44px rgba(58,48,42,0.10);
+  }
+
+  .canvas-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    margin-bottom: 18px;
+  }
+
+  .canvas-head h2 {
+    font-size: 34px;
+    line-height: 1.2;
+    color: var(--pink);
+  }
+
+  .canvas-head p {
+    font-size: 18px;
+    line-height: 1.45;
+    color: var(--ink-light);
+    max-width: 520px;
+    text-align: right;
+    font-weight: 600;
+  }
+
+  .business-canvas {
+    display: grid;
+    grid-template-columns: 1.08fr 1fr 1.25fr 1fr 1.08fr;
+    grid-template-rows: 350px 350px 285px;
+    border: 2px solid rgba(45,41,38,0.22);
+    background: rgba(45,41,38,0.16);
+    gap: 2px;
+  }
+
+  .cell {
+    position: relative;
+    background: #fbfaf6;
+    padding: 24px 23px;
+    overflow: hidden;
+  }
+
+  .cell::after {
+    content: attr(data-no);
+    position: absolute;
+    right: 18px;
+    bottom: 10px;
+    font-family: var(--serif);
+    font-size: 76px;
+    line-height: 1;
+    color: rgba(117,133,111,0.13);
+  }
+
+  .cell h3 {
+    position: relative;
+    z-index: 1;
+    font-size: 26px;
+    line-height: 1.18;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+
+  .cell .en {
+    position: relative;
+    z-index: 1;
+    display: block;
+    font-family: var(--mono);
+    color: var(--green);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 800;
+  }
+
+  .cell .question {
+    position: relative;
+    z-index: 1;
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--pink);
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .cell p {
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-light);
+    font-weight: 600;
+  }
+
+  .key-partners { grid-column: 1; grid-row: 1 / span 2; }
+  .key-activities { grid-column: 2; grid-row: 1; }
+  .key-resources { grid-column: 2; grid-row: 2; }
+  .value-prop {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    background: linear-gradient(180deg, #15201c 0%, #223229 100%);
+    color: #fbfaf6;
+    padding: 34px 30px;
+  }
+  .customer-rel { grid-column: 4; grid-row: 1; }
+  .channels { grid-column: 4; grid-row: 2; }
+  .customers { grid-column: 5; grid-row: 1 / span 2; }
+  .cost { grid-column: 1 / span 3; grid-row: 3; background: #f7f4ec; }
+  .revenue { grid-column: 4 / span 2; grid-row: 3; background: #f4f7ef; }
+
+  .value-prop::after {
+    color: rgba(255,255,255,0.08);
+    font-size: 118px;
+  }
+
+  .value-prop h3 {
+    font-size: 34px;
+    color: #fbfaf6;
+  }
+
+  .value-prop .en {
+    color: #d9c884;
+  }
+
+  .value-prop .question {
+    color: #f2d47b;
+    font-size: 19px;
+  }
+
+  .value-prop p {
+    color: rgba(251,250,246,0.86);
+    font-size: 18px;
+    line-height: 1.56;
+  }
+
+  .bottom-cell {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .bottom-cell h3 {
+    font-size: 29px;
+  }
+
+  .bottom-cell p {
+    font-size: 16px;
+    max-width: 720px;
+  }
+
+  .flow-strip {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+
+  .flow-box {
+    background: rgba(255,255,255,0.72);
+    border-top: 5px solid var(--green);
+    padding: 20px 22px 22px;
+    border-radius: 8px;
+    min-height: 158px;
+  }
+
+  .flow-box:nth-child(2) {
+    border-color: var(--pink);
+    background: rgba(255,255,255,0.82);
+  }
+
+  .flow-box h3 {
+    font-size: 24px;
+    line-height: 1.22;
+    margin-bottom: 10px;
+  }
+
+  .flow-box p {
+    font-size: 18px;
+    line-height: 1.52;
+    color: var(--ink-light);
+    font-weight: 600;
+  }
+
+  .use-output {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 20px;
+  }
+
+  .how-use,
+  .true-output {
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(58,48,42,0.11);
+    border-radius: 10px;
+    padding: 28px 30px 30px;
+  }
+
+  .how-use {
+    border-left: 6px solid var(--green);
+  }
+
+  .true-output {
+    border-left: 6px solid var(--pink);
+  }
+
+  .step-grid {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 18px;
+  }
+
+  .step {
+    border-top: 1px solid rgba(58,48,42,0.16);
+    padding-top: 13px;
+  }
+
+  .step b {
+    display: block;
+    font-family: var(--mono);
+    color: var(--pink);
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .step p {
+    font-size: 17px;
+    line-height: 1.48;
+    color: var(--ink-light);
+    font-weight: 600;
+  }
+
+  .true-output p {
+    margin-top: 16px;
+    font-size: 24px;
+    line-height: 1.55;
+    font-weight: 800;
+  }
+
+  .warning {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(58,48,42,0.16);
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-light);
+    font-weight: 600;
+  }
+
+  .thesis {
+    margin-top: 28px;
+    background: linear-gradient(90deg, rgba(117,133,111,0.16), rgba(178,58,72,0.08));
+    border-top: 5px solid var(--green);
+    padding: 30px 36px;
+    font-size: 29px;
+    line-height: 1.45;
+    font-weight: 800;
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <filter id="noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+</svg>
+<div class="page">
+  <div class="grain"></div>
+
+  <header class="bm-hero">
+    <div>
+      <div class="bm-ref">REF—STRATEGY / BUSINESS MODEL CANVAS</div>
+      <h1 class="bm-title">商业模式画布分析图</h1>
+      <p class="bm-subtitle">把一门生意拆成九个相互咬合的模块：谁买、买什么、怎么触达、靠什么交付、成本和收入是否闭合。</p>
+    </div>
+    <div class="bm-badge">
+      <strong>9 Blocks</strong>
+      <span>不是填表游戏，而是检查一套商业假设能不能跑通。</span>
+    </div>
+  </header>
+
+  <section class="bm-principle">
+    <div class="bm-principle-main">
+      <div class="eyebrow">Core Question</div>
+      <h2>这门生意为什么有人愿意付钱，并且企业能持续交付？</h2>
+      <p>商业模式画布的价值，不在于列出九个名词，而在于发现各模块之间是否互相支撑：客户是否清楚，价值是否尖锐，渠道是否到达，成本是否被收入覆盖。</p>
+    </div>
+    <div class="bm-principle-side">
+      <div class="eyebrow">How To Read</div>
+      <h2>先看中间，再看两边，最后看底部。</h2>
+      <p>中间回答价值，右侧回答市场，左侧回答交付，底部回答经济账。任何一个模块写不清，通常都意味着商业假设还没有被验证。</p>
+    </div>
+  </section>
+
+  <main class="canvas-wrap">
+    <div class="canvas-head">
+      <h2>九宫格不是并列清单，而是一张价值流动图</h2>
+      <p>左侧让价值被制造出来；中间定义客户愿意购买的理由；右侧把价值送到客户手上；底部检验钱是否回得来。</p>
+    </div>
+
+    <section class="business-canvas">
+      <article class="cell key-partners" data-no="08">
+        <h3>关键伙伴</h3>
+        <span class="en">Key Partners</span>
+        <div class="question">哪些外部角色必须一起完成交付？</div>
+        <p>供应商、渠道方、技术平台、履约网络、政府或生态合作伙伴。它们决定哪些能力自建，哪些能力外包或联盟。</p>
+      </article>
+
+      <article class="cell key-activities" data-no="06">
+        <h3>关键业务</h3>
+        <span class="en">Key Activities</span>
+        <div class="question">每天必须做对哪些事？</div>
+        <p>研发、生产、获客、运营、服务、风控、内容、撮合或履约。这里写让价值主张成立的核心动作。</p>
+      </article>
+
+      <article class="cell key-resources" data-no="07">
+        <h3>关键资源</h3>
+        <span class="en">Key Resources</span>
+        <div class="question">什么资产支撑你的壁垒？</div>
+        <p>品牌、数据、专利、团队、牌照、供应链、现金、用户关系和基础设施。资源越稀缺，模式越难复制。</p>
+      </article>
+
+      <article class="cell value-prop" data-no="01">
+        <h3>价值主张</h3>
+        <span class="en">Value Propositions</span>
+        <div class="question">客户为什么非要选择你？</div>
+        <p>价值主张要落到具体痛点、收益和替代方案上：是省钱、省时、降低风险、提升效率，还是完成过去做不到的任务。</p>
+        <p style="margin-top:18px;">如果这里只能写成“更好体验”或“一站式服务”，后面的八格都会变成空转。</p>
+      </article>
+
+      <article class="cell customer-rel" data-no="04">
+        <h3>客户关系</h3>
+        <span class="en">Customer Relationships</span>
+        <div class="question">你和客户如何持续发生关系？</div>
+        <p>自助、社群、顾问式服务、会员、长期合同或高频运营。关系形态影响复购、客单价和服务成本。</p>
+      </article>
+
+      <article class="cell channels" data-no="03">
+        <h3>渠道通路</h3>
+        <span class="en">Channels</span>
+        <div class="question">客户在哪里知道、购买和使用？</div>
+        <p>内容平台、销售团队、门店、App、代理商、私域或合作渠道。渠道不是曝光位，而是完整购买路径。</p>
+      </article>
+
+      <article class="cell customers" data-no="02">
+        <h3>客户细分</h3>
+        <span class="en">Customer Segments</span>
+        <div class="question">到底服务哪一类人或组织？</div>
+        <p>按任务、场景、预算、决策链、使用频率和风险承受能力划分。客户越泛，价值主张越容易变空。</p>
+      </article>
+
+      <article class="cell cost bottom-cell cost" data-no="09">
+        <div>
+          <h3>成本结构</h3>
+          <span class="en">Cost Structure</span>
+        </div>
+        <div>
+          <div class="question">为了交付价值，哪些成本不可避免？</div>
+          <p>固定成本、变动成本、获客成本、研发投入、履约成本、服务成本和渠道分成。成本结构决定规模扩大后利润是变厚还是变薄。</p>
+        </div>
+      </article>
+
+      <article class="cell revenue bottom-cell revenue" data-no="05">
+        <div>
+          <h3>收入来源</h3>
+          <span class="en">Revenue Streams</span>
+        </div>
+        <div>
+          <div class="question">客户如何付钱，为什么愿意持续付？</div>
+          <p>一次性销售、订阅、佣金、租赁、广告、增值服务、交易抽成或结果付费。收入方式必须匹配客户价值和交付成本。</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <section class="flow-strip">
+    <div class="flow-box">
+      <h3>左侧：能力系统</h3>
+      <p>关键伙伴、关键业务和关键资源回答“企业凭什么交付”。如果左侧薄弱，右侧承诺越大，履约风险越高。</p>
+    </div>
+    <div class="flow-box">
+      <h3>中间：价值假设</h3>
+      <p>价值主张是整张画布的心脏。它必须明确客户痛点、替代选择和付费理由，否则九格只是漂亮分类。</p>
+    </div>
+    <div class="flow-box">
+      <h3>右侧：市场系统</h3>
+      <p>客户、渠道、关系和收入回答“钱从哪里来”。市场系统越清楚，增长路径和定价逻辑越容易验证。</p>
+    </div>
+  </section>
+
+  <section class="use-output">
+    <div class="how-use">
+      <div class="eyebrow">How To Use</div>
+      <h2 class="bm-section-title">四步使用</h2>
+      <div class="step-grid">
+        <div class="step">
+          <b>01 DEFINE</b>
+          <p>先写客户细分和价值主张，避免从资源和产品自嗨开始。</p>
+        </div>
+        <div class="step">
+          <b>02 LINK</b>
+          <p>把渠道、客户关系和收入方式连起来，检查购买路径是否真实。</p>
+        </div>
+        <div class="step">
+          <b>03 TEST</b>
+          <p>逐格标注证据强弱：已验证、待验证、纯假设，不要混在一起。</p>
+        </div>
+        <div class="step">
+          <b>04 REVISE</b>
+          <p>优先修正牵动最多模块的假设，例如价值主张、渠道或成本结构。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="true-output">
+      <div class="eyebrow">True Output</div>
+      <h2 class="bm-section-title">真正的输出</h2>
+      <p>商业模式画布最终要产出一个判断：这套模式的增长逻辑、交付能力和经济账是否闭环；如果不闭环，应该先验证哪一个关键假设。</p>
+      <div class="warning">误区：不要把它当作商业计划书目录。画布不是为了把内容填满，而是为了暴露冲突：客户想要的、企业能做的、市场愿意付钱的，是否是同一件事。</div>
+    </div>
+  </section>
+
+  <div class="thesis">商业模式画布不是九个格子的答案，而是一张假设地图：能连成闭环的才是模式，连不上的只是想法。</div>
+</div>
+</body>
+</html>

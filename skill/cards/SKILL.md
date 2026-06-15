@@ -39,6 +39,12 @@ For **Industry Application** cards, prefer a larger report canvas:
 node assets/capture.js <html> <png> 1280 900 fullpage
 ```
 
+For dense **Method Intro** cards whose main structure is a large canvas, table, matrix, map, or multi-cell framework, also prefer the 1280-wide render so the framework can breathe:
+
+```bash
+node assets/capture.js <html> <png> 1280 900 fullpage
+```
+
 Run the command from the skill root. The script depends on local Playwright in this skill folder.
 
 ## Required Reads
@@ -112,6 +118,7 @@ Key constraints:
 - Avoid fake data and AI-flavored copy.
 - Use at most one strong accent color.
 - Keep text readable at 1080px export width.
+- For large matrix/canvas methods, use a wider fixed canvas instead of compressing the structure into narrow cards.
 - For industry application cards, use a larger fixed report format and prioritize analytical capacity over compactness.
 
 ## Delivery
